@@ -18,6 +18,7 @@ namespace Client
                 return;
             }
 
+
             var tokenResponse = await client.RequestClientCredentialsTokenAsync(new ClientCredentialsTokenRequest
             {
                 Address = disco.TokenEndpoint,
@@ -31,8 +32,7 @@ namespace Client
                 return;
             }
 
-
-            var apiClient = new HttpClient();
+                        var apiClient = new HttpClient();
             apiClient.SetBearerToken(tokenResponse.AccessToken);
             var apiResponse = await apiClient.GetAsync("https://localhost:6001/identity");
             if (!apiResponse.IsSuccessStatusCode)
